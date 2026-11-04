@@ -543,10 +543,17 @@ def load_config(config_path: Optional[str] = None) -> Dict[str, Any]:
     with open(config_path, "r", encoding="utf-8") as f:
         config_data = yaml.safe_load(f)
 
+    # Once the workbench has been initialized its source catalogue is authoritative.
+    # A custom CONFIG_PATH remains independent unless RADAR_DB is explicitly set.
+    if Path(config_path).resolve() == Path("config/config.yaml").resolve() or os.getenv("RADAR_DB"):
+        from trendradar.workbench.compat import apply_source_overrides
+        config_data = apply_source_overrides(config_data, Path(config_path).resolve().parent.parent)
+
     print(f"配置文件加载成功: {config_path}")
 
     # 合并所有配置
     config = {}
+    config["WORKBENCH"] = config_data.get("workbench", {})
 
     # 应用配置
     config.update(_load_app_config(config_data))

@@ -33,3 +33,18 @@ _image/
 .env.*.local
 version
 index.html
+
+# Workbench build and credentials
+.venv/
+.tools/
+.env
+.env.*
+.run/
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+# Required by the Python build and the React build stage
+!README.md
+!frontend/index.html

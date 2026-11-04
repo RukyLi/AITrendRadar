@@ -1,0 +1,40 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.workbench
+    image: aitrendradar-workbench:local
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8787}:8787"
+    volumes:
+      - radar-data:/app/output
+    env_file:
+      - path: ../.env.local
+        required: false
+    environment:
+      RADAR_ROOT: /app
+      RADAR_DB: /app/output/workbench.sqlite3
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/v1/health', timeout=5)"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+  worker:
+    image: aitrendradar-workbench:local
+    command: [".venv/bin/python", "-m", "trendradar.workbench", "worker", "--root", "/app"]
+    depends_on:
+      web:
+        condition: service_healthy
+    volumes:
+      - radar-data:/app/output
+    env_file:
+      - path: ../.env.local
+        required: false
+    environment:
+      RADAR_ROOT: /app
+      RADAR_DB: /app/output/workbench.sqlite3
+    restart: unless-stopped
+    stop_grace_period: 20s
+volumes:
+  radar-data:

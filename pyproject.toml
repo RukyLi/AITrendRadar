@@ -14,6 +14,8 @@ dependencies = [
     "litellm==1.82.6",
     "json-repair==0.58.6",
     "tenacity==8.5.0",
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
 ]
 
 [project.scripts]
@@ -21,7 +23,9 @@ trendradar = "trendradar.__main__:main"
 trendradar-mcp = "mcp_server.server:run_server"
 
 [dependency-groups]
-dev = []
+dev = [
+    "pytest>=8,<10",
+]
 
 [build-system]
 requires = ["hatchling"]

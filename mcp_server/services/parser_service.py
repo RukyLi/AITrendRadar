@@ -369,6 +369,9 @@ class ParserService:
         try:
             with open(config_path, "r", encoding="utf-8") as f:
                 config_data = yaml.safe_load(f)
+            if config_path.resolve() == (self.project_root / "config/config.yaml").resolve():
+                from trendradar.workbench.compat import apply_source_overrides
+                config_data = apply_source_overrides(config_data, self.project_root)
             return config_data
         except Exception as e:
             raise FileParseError(str(config_path), str(e))

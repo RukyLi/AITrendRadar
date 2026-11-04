@@ -1334,6 +1334,83 @@ GitHub Pages 在国内访问较慢，[Cloudflare Pages](https://pages.cloudflare
    > - Mac 用户可使用 `bash setup-mac.sh`
    > - 运行前请先编辑 `config/config.yaml` 填写推送渠道等配置，参考下方的基础配置流程
 
+   **个人 AI 情报台：本地启动**
+
+   在项目目录安装 Python 与前端依赖，构建后启动：
+
+   ```bash
+   uv sync --locked --python 3.12
+   npm --prefix frontend ci
+   npm --prefix frontend run build
+   bash start-local.sh start   # http://127.0.0.1:8787，同时启动 Web 和 Worker
+   bash start-local.sh status  # 查看两个进程状态
+   bash start-local.sh stop    # 停止工作台
+   ```
+
+   项目本地安装的 uv 可使用 `.tools/bin/uv`；已有 `.venv` 时无需重复安装。`web` 是 `start` 的别名。Web 与 Worker 在后台运行，关闭终端后可继续使用；电脑休眠或关机期间不采集。日志位于 `.run/workbench-serve.log` 和 `.run/workbench-worker.log`，`WEB_PORT` 可修改端口。
+
+   **工作台使用方式**
+
+   - 今日精选、全部事件和我的关注只收录通过 AI 相关性审核的资讯。综合热榜中的无关内容、待审核、信息不足或审核失败内容保留在独立的“综合归档”，可按审核状态筛选；AI 相关的热榜资讯通过审核后也可进入主列表。收藏不受审核结果影响。
+   - 详情显示审核理由、引用的标题/RSS 摘要、模型与时间，并可重新审核。相关性审核判断主题是否属于 AI，不是事实核查或对社区观点的认可。批量审核入口在“综合归档 → 审核与聚合”，进度、通过/无关/不足/失败数量及聚合结果显示在后台任务。
+   - 点击事件标记已读，书签保存收藏；按 `/` 搜索、`J/K` 切换事件、`B` 收藏。刷新、前进后退均保留选中的事件，阅读状态存入数据库。
+   - `⌘K`（Windows/Linux 为 `Ctrl+K`）默认搜索 AI 资讯，勾选“包含综合归档”可搜索整个资料库；上下方向键选择，回车打开。`F` 进入专注阅读，`Esc` 返回；工具栏可调字号，列表可切换舒适/紧凑密度，侧栏可以折叠。字号、密度、侧栏和明暗外观保存在当前浏览器。
+   - 界面采用浅灰磨砂导航、悬浮阅读工具栏和半透明浮层；正文保持不透明以便长时间阅读。系统开启“减少动态效果”时自动关闭过渡动画。
+   - 来源管理支持新增 RSS/Atom/JSON Feed、编辑、启停、测试、查看状态；主题支持关键词编辑、关注与删除。
+   - 来源标识区分机构官方、媒体、个人博客、社区、论文和热榜聚合，并单独标明网站直连 RSS、hnrss 第三方 RSS、NewsNow 聚合等采集渠道。自定义来源默认身份未核验；修改已知源的域名或路径不会沿用“机构官方”标识。
+   - 默认每 60 分钟更新，首次及每轮采集最近 7 天、每源最多 50 条；每天北京时间 09:00 生成最近 24 小时简报。服务错过时间后会在下一次启动补做当天简报，不补跑历史日期。
+   - AI 仅自动解读当轮新增或变化的最多 20 个关注事件；历史导入不自动补跑。单个事件可手动解读。模型故障不影响浏览、搜索与收藏。简报会保留版本，模型不可用时保留带来源的摘录版。
+   - 新内容不会自动插入正在阅读的列表，点击更新提示再刷新。网络失败或限流按来源退避，其他来源继续更新。
+
+   **相关性审核与事件去重**
+
+   关键词仅用于召回热榜候选，所有 RSS 条目均可进入审核；未命中规则的综合热榜保留在归档，支持手动审核。模型根据已采集资料给出相关、无关或不确定结论，相关/无关置信度至少 0.8 才确认；无效结构或引用不会放行。每轮更新最多审核 80 个候选，批量审核任务最多 500 个，历史数据不批量生成长摘要。内容或模型版本未变化时复用已校验结果；内容变化后重新审核，调用失败保留资料并退避 30 分钟。关闭 AI 后新内容先进入归档。
+
+   规范化 URL 和相同标题先去重；跨语言候选通过英文规范标题、实体索引和 7 天时间窗口召回，再让模型对照两侧原始资料核验具体主体、动作和版本。只有引用两侧文章、置信度至少 0.93 且版本相容才合并；不同版本/变体与独立社区讨论保持分开。每次语义合并记录理由、引用、模型及合并前快照，原文章和旧事件链接保留，收藏取并集，包含未读文章时事件保持未读。候选召回与模型判断均可能遗漏，不承诺消除全部语义重复。
+
+   工作台使用 `output/workbench.sqlite3`（WAL 模式），日归档仍写入 `output/news/`、`output/rss/`，历史报告保留在 `output/html/`。首次启动将已有归档导入统一索引，重复导入不会重复文章；文章与事件 ID 跨天稳定。备份前运行 `stop`，然后备份整个 `output/`，避免遗漏 SQLite WAL 文件。
+
+   来源、工作台主题和工作台设置在首次启动后由应用库管理，后续编辑 YAML 不会覆盖网页设置。旧版 CLI 与 MCP 读取同一来源目录；MCP 的 `get_current_config` 同时提供工作台主题和设置。原版关键词词库、AI 兴趣筛选、通知、远程存储等高级功能仍通过原配置使用。不要同时启动旧版定时采集器和工作台 Worker，以免重复调用。
+
+   保留的命令：
+
+   ```bash
+   bash start-local.sh doctor  # 检查配置，不实际请求模型
+   bash start-local.sh crawl   # 原版抓取、分析与 HTML 报告流程
+   bash start-local.sh mcp     # 原版 MCP：http://127.0.0.1:3333/mcp（Ctrl+C 停止）
+   bash start-local.sh import  # 重复导入日归档
+   bash start-local.sh update  # 提交后台更新任务，需要 Worker 正在运行
+   bash start-local.sh report  # 单独浏览 HTML 存档：http://127.0.0.1:8081
+   ```
+
+   **模型配置**
+
+   密钥只放在 Git 忽略的 `.env.local`，启动脚本会自动加载，API 不向网页返回密钥。参考 `.env.example` 配置 `AI_API_KEY`、`AI_MODEL` 和 `AI_API_BASE`。模型保持 `openai/glm-5.3`，没有自动切换 Flash；`low` 思考强度已配置，GLM-5.3 不支持关闭思考。修改环境变量后执行 `stop`、`start`，MCP 也需重启。网页的 AI 开关仅控制工作台；旧报告仍使用 `AI_ANALYSIS_ENABLED` 和 `AI_TRANSLATION_ENABLED`。
+
+   标准 API 使用 `https://open.bigmodel.cn/api/paas/v4`；Coding Plan 端点为 `https://open.bigmodel.cn/api/coding/paas/v4`，额度受官方支持的工具范围限制，不能把请求成功等同于自建后台可长期使用订阅。自建自动采集服务应使用适用的 API 凭证。详见[智谱套餐说明](https://docs.bigmodel.cn/cn/coding-plan/overview)。
+
+   **Docker 部署**
+
+   ```bash
+   docker compose -f docker/compose.workbench.yml up --build -d
+   docker compose -f docker/compose.workbench.yml logs -f worker
+   docker compose -f docker/compose.workbench.yml down
+   ```
+
+   默认仅映射 `127.0.0.1:8787`，数据保存在 `radar-data` 命名卷，`down` 不删除数据。镜像采用非 root 用户，不包含密钥或本地数据。首次容器启动使用空库；若要迁移本地数据，停机后将 `output/` 内容复制到命名卷并确认 UID 10001 可读写。Compose 需要支持 `env_file.required` 的版本。工作台为单用户本地应用，无公网登录模块；本方案不开放公网。
+
+   **开发与验证**
+
+   ```bash
+   LITELLM_LOCAL_MODEL_COST_MAP=True .venv/bin/python -m pytest -q
+   npm --prefix frontend run build
+   npm --prefix frontend run dev  # 127.0.0.1:5173，API 代理到 8787
+   ```
+
+   API 文档位于 `/docs`，资源统一使用 `/api/v1/`：events、articles、sources、topics、settings、jobs、briefs、reports。写操作使用严格字段白名单；任务返回 ID，重复提交复用活跃任务。Worker 重启恢复中断任务，事件、文章及 AI 缓存使重跑幂等。
+
+   X 官方 API 保留扩展入口，未配置自动采集；Reddit 使用公开 RSS，无法提供完整点赞/评论指标。页面中的来源数仅表示本站收录，不代表全网热度。
+
 ### 1️⃣ 第一步：获取项目代码
 
    点击本仓库页面右上角的绿色 **[Use this template]** 按钮 → 选择 "Create a new repository"。

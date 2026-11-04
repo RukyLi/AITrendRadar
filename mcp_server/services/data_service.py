@@ -555,6 +555,8 @@ class DataService:
                 "keywords": keywords_config,
                 "weights": weights_config
             }
+            if config_data.get("workbench"):
+                result["workbench"] = config_data["workbench"]
         elif section == "crawler":
             result = crawler_config
         elif section == "push":
