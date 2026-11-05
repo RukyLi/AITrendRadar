@@ -1,0 +1,506 @@
+frontend/src/components/Monitor.tsx
+  s_7752c39f82bbbe::t_a7c4a20f48a46a 23,157,184,475,596,651,1256-1257,1373
+  s_7752c39f82bbbe::t_9ce679d2137633 316-324,378
+  s_7752c39f82bbbe::t_aeb49981780fe9 76,1006-1007
+  s_7752c39f82bbbe::t_0bc52d7dd90300 191,312,315,374-377,379-380,916
+  s_7752c39f82bbbe::t_e8979eb6accd1d 21,24,35-37,117,141,143,145,190,360,436,919,927,1070-1071
+  s_7752c39f82bbbe::t_c6e2f15e767182 1-19,22,26-34,38-46,48-51,53-65,67-75,77-116,119-120,122-123,126-140,142,144,146-156,171-183,185-189,192-213,215-216,218-223,225-263,267,270-271,273-311,313-314,325-336,338-346,349,363-370,372-373,381-402,404-426,429-434,437-439,444-474,477-562,564-595,597-650,652-656,671,696-717,719-721,727-730,743-749,755-765,777,780,812-824,826-915,917,995-1005,1008-1023,1025-1026,1030-1063,1065-1069,1072-1106,1114-1120,1126-1231,1233-1255,1258-1372
+  s_7752c39f82bbbe::t_79e7c888f52ae6 158-167,169-170,217,224,264-266,268-269,272,337,347-348,371,403,1121-1125
+  s_7752c39f82bbbe::t_a9c859fd3e5688 966,968-970,972-973
+  s_7752c39f82bbbe::t_84325d3055e072 66,1232
+  s_7752c39f82bbbe::t_322900e4e2b6de 20,25,47,52,118,121,168,214,350-356,358-359,361-362,427-428,435,476,563,657-668,670,679-695,718,778-779,825,918,1024,1027-1029,1064
+  s_7752c39f82bbbe::t_bf9472153059e2 124-125,440-443,672-678,731-742,750-754,781-811,920-926,929-965,974-993,1107-1113
+  s_36fd7ece90252a::t_ae5ddaf8f166c7 357,669,722-726,766-776,928,967,971,994
+trendradar/workbench/util.py
+  s_7752c39f82bbbe::t_8d4844b7e56da1 53
+docs/newsnow-channel-checks.md
+  s_7752c39f82bbbe::t_5754f06b48dce0 5,7-8,15,47,67-83
+  s_7752c39f82bbbe::t_c8b5a8d79f2b45 1-4,6,9-14,16-46,48-66
+.dockerignore
+  s_7752c39f82bbbe::t_541b015c543234 51-57
+trendradar/workbench/monitor_schema.sql
+  s_7752c39f82bbbe::t_541b015c543234 17
+  s_7752c39f82bbbe::t_4c7df25d08bf6c 1-4,6-10,12-16,18-46
+  s_7752c39f82bbbe::t_05b019de911d71 5
+  s_7752c39f82bbbe::t_8d4844b7e56da1 11
+trendradar/workbench/provenance.py
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 22-24
+  s_7752c39f82bbbe::t_541b015c543234 25-29
+frontend/src/App.tsx
+  s_7752c39f82bbbe::t_acc6d847e3b790 1,78,253,520,627
+  s_7752c39f82bbbe::t_10a82331144bea 57-64,459-464,776-780,811-815
+trendradar/workbench/monitor_worker.py
+  s_7752c39f82bbbe::t_6c8c4b8a4b79a5 71
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 17
+  s_7752c39f82bbbe::t_8d4844b7e56da1 12,65-70
+  s_7752c39f82bbbe::t_366e9e31e3d0af 1-11,13-16,18-39,41-42,44,46-64,72-106
+  s_7752c39f82bbbe::t_05b019de911d71 40,43,45
+scripts/sync_newsnow_catalog.py
+  s_7752c39f82bbbe::t_6219ff2b7da1c6 1-37
+docker/Dockerfile.newsnow
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 1-10,12-13,15-16
+  s_7752c39f82bbbe::t_541b015c543234 11
+  s_7752c39f82bbbe::t_0bc52d7dd90300 14
+tests/workbench/test_monitor.py
+  s_7752c39f82bbbe::t_6c8c4b8a4b79a5 78-117
+  s_7752c39f82bbbe::t_a04baaca808953 293-312
+  s_7752c39f82bbbe::t_aca5ef84a08a2a 33-34,261
+  s_7752c39f82bbbe::t_a06c5e1d0ceb31 1-32,35-42,118-224,237-260,262-290
+  s_7752c39f82bbbe::t_5c88152cf9bb75 43-77
+  s_7752c39f82bbbe::t_4b695bffa368c3 225-236
+  s_7752c39f82bbbe::t_2a72caa319c604 291-292,313-326
+trendradar/workbench/worker.py
+  s_7752c39f82bbbe::t_4b695bffa368c3 69,138
+  s_7752c39f82bbbe::t_f6dc60f804dea2 123
+  s_7752c39f82bbbe::t_ae311cdb69daf2 31,67-68,72,121-122
+start-local.sh
+  s_7752c39f82bbbe::t_ae311cdb69daf2 33
+trendradar/workbench/compat.py
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 17-19
+trendradar/workbench/monitor_catalog.py
+  s_7752c39f82bbbe::t_22c467f26588d8 1-4,6-14,21-22,26-31
+  s_7752c39f82bbbe::t_4c7df25d08bf6c 5,15-18,23-25,32-33
+  s_7752c39f82bbbe::t_f6dc60f804dea2 19-20
+README.md
+  s_7752c39f82bbbe::t_022572f869a746 1375,1379
+  s_7752c39f82bbbe::t_5a655d3870d8db 1345-1350,1354,1369-1370,1374,1376,1378,1380,1389,1411-1412
+  s_7752c39f82bbbe::t_572d5ebe916748 1372-1373
+  s_7752c39f82bbbe::t_fbc0de3caa29aa 1377
+  s_7752c39f82bbbe::t_d599b84a26c481 1371,1416
+trendradar/workbench/__main__.py
+  s_7752c39f82bbbe::t_ae311cdb69daf2 10,15-18,32-34
+trendradar/workbench/newsnow_catalog.json
+  s_7752c39f82bbbe::t_22c467f26588d8 1-418
+docker/compose.workbench.yml
+  s_7752c39f82bbbe::t_082026a4d201bb 11
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 2-10,15-20,56,59-74,77
+  s_7752c39f82bbbe::t_0bc52d7dd90300 12-14
+frontend/src/components/NewsNowCard.tsx
+  s_7752c39f82bbbe::t_f46769806ba565 1,3-13,15-24,30-46,48-65,68-69,73,76-87,89-116,118-125,127,129-153,155,158,162,167,169-174,178-180,182-228,233,235-241,243,245-250,252-253,260-263,265-273,275-278,280-294,296,298-308,310-323,325-327,329-338,340,342,344-385,387
+  s_7752c39f82bbbe::t_a542e5f2e81092 66-67,168,175-177
+  s_7752c39f82bbbe::t_bf9472153059e2 70-72,229-231,254-259
+  s_7752c39f82bbbe::t_e389acdded5638 26-29,74-75,251
+  s_7752c39f82bbbe::t_66cddb59e80a29 2,14,25,47,88,117,126,128,154,156-157,159-161,163-166,181,232,234,242,244,264,274,279,295,297,309,324,328,339,341,343,386
+frontend/src/components/monitor.css
+  s_7752c39f82bbbe::t_180f6831234cb9 1-13,16-17,19,22,24,27-36,38-39,41-43,46-48,52-53,56,60-61,67-68,74,77-78,85-86,95,99,103-107,111-113,115-118,121-125,129-130,132,134,138,141-143,146-147,346
+  s_7752c39f82bbbe::t_bf9472153059e2 126,154,176-177,183,190-191,194-195,199-201,210-212,216,219,221,223,227,232-233,249,265,293,299,306,308,310-312,314,323,327,333-334,338,341-342,347-348,350,370,386-388,410,413-415,418,427-428,441,443,446,452,455,458-460,466,472,475-476,483,486-487,498,505,508-510,517-518,531,540,544,550,553-555,559,566-567,569,571-572,577-581,584,588-589,591,598-599,611-613,617-619,624,627-628,636-637,640,643,646-647,649-650,653,656-658,665,674,681-682,688,693,695-696,700-701,706-709,714,719,722,725-726,729-730,733-735,740,742-743,747,755,760-761,764-765,767-769,772,777-778,781,783,787-789,793-794,798,816-817,824-827,832,839-840,844,850,861,864,870,877-878,881-882,944,947,978,1018,1029-1280
+  s_7752c39f82bbbe::t_aeb49981780fe9 151-152,163,167,170,173,175,180,186,192,196,198,202,208,217,224,226,230,240,245,251,257,260,263,266,280,286,289,291-292,294,297,300,303,305,317,320,324,326,335,339,344,351,355,358,362,371,376,380,383,391,400,403,406,409,412,416,421,424,426,429,433,438,440,444,447,449,456,464,467,469-470,473,481,484,489,494,499,503,506,512,521,526,529,532,535,537,545,548,551,557,560,568,573,576,582,585,592,601,603,606,609,614,616,621,625,629,633,635,638,645,651,654,660,666,670,672-673,679,683,686,689-691,697,699,702,711,715,717,723,727,731,737,739,744,748,750-751,756,758-759,762,770,775,779,784,786,790,792,795,800,808,821,823,829,836,838,842,845,851,857,862-863,865,875,879,884,887,892,896-897,901,904-905,909-910,915,918,921-923,927,930,933,938,943,946,951,955,960,963,966,970,973,976,980,983,986,989,992,995,998,1004,1007,1010,1013,1016,1019-1020,1027-1028,1281-1309
+  s_7752c39f82bbbe::t_e5c08f354cbe3a 14-15,18,20-21,23,25-26,37,40,44-45,49-51,54-55,57-59,62-66,69-73,75-76,79-84,87-94,96-98,100-102,108-110,114,119-120,127-128,131,133,135-137,139-140,144-145,148-150,153,155-162,164-166,168-169,171-172,174,178-179,181-182,184-185,187-189,193,197,203-207,209,213-215,218,220,222,225,228-229,231,234-239,241-244,246-248,250,252-256,258-259,261-262,264,267-279,281-285,287-288,290,295-296,298,301-302,304,307,309,313,315-316,318-319,321-322,325,328-332,336-337,340,343,345,349,352-354,356-357,359-361,363-369,372-375,377-379,381-382,384-385,389-390,392-399,401-402,404-405,407-408,411,417,419-420,422-423,425,430-432,434-437,439,442,445,448,450-451,453-454,457,461-463,465,468,471,474,477-480,482,485,488,490-493,495-497,500-502,504,507,511,513-516,519-520,522-525,527-528,530,533-534,536,538-539,541-543,546-547,549,552,556,558,561-565,570,574-575,583,586-587,590,593-597,600,602,604-605,607-608,610,615,620,622-623,626,630-632,634,639,641-642,644,648,652,655,659,661-664,667-669,671,675-678,680,684-685,687,692,694,698,703-705,710,712-713,716,718,720-721,724,728,732,736,738,741,745-746,749,752-754,757,763,766,771,773-774,776,780,782,785,791,796-797,799,801-807,809-815,818-820,822,828,830-831,833-835,837,841,843,846-849,852-856,858-860,866-869,871-874,876,880,883,885-886,888-891,893-895,898-900,902-903,906-908,911-914,916-917,919-920,924-926,928-929,931-932,934-937,939-942,945,948-950,952-954,956-959,961-962,964-965,967-969,971-972,974-975,977,979,981-982,984-985,987-988,990-991,993-994,996-997,999-1003,1005-1006,1008-1009,1011-1012,1014-1015,1017,1021-1026
+.gitignore
+  s_7752c39f82bbbe::t_95f273dab3e410 14-15
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 26-31
+trendradar/workbench/store.py
+  s_7752c39f82bbbe::t_e1afb8e1aa3be6 37,62-63,82-83,428,431
+  s_7752c39f82bbbe::t_05b019de911d71 38-39
+  s_7752c39f82bbbe::t_541b015c543234 42-43
+  s_7752c39f82bbbe::t_71dd70e7579f73 219
+  s_7752c39f82bbbe::t_4b695bffa368c3 397-399
+  s_7752c39f82bbbe::t_8d4844b7e56da1 40-41
+trendradar/workbench/monitor.py
+  s_7752c39f82bbbe::t_05b019de911d71 7-10,12,35,38-41,66,76-77,101,108,159-160,190-191
+  s_7752c39f82bbbe::t_8d4844b7e56da1 113-115,117-118,184
+  s_7752c39f82bbbe::t_71dd70e7579f73 134,141,149,290
+  s_7752c39f82bbbe::t_2a72caa319c604 253,264-265
+  s_7752c39f82bbbe::t_6c8c4b8a4b79a5 78
+  s_7752c39f82bbbe::t_ff68cf22241719 188,203,211
+  s_7752c39f82bbbe::t_d99799d8a4555c 1-6,11,13-34,36-37,42-65,67-75,79-100,102-107,109-112,116,119-133,135-137,142-148,150-158,161-183,185-187,189,192-196,199,201-202,204-205,216-217,240,247-252,254-263,266-275,278-289,291-311
+  s_7752c39f82bbbe::t_541b015c543234 138-140,276-277
+  s_7752c39f82bbbe::t_c6e2f15e767182 206-209,212-215,224
+  s_7752c39f82bbbe::t_97752be18ea0a4 197-198,200,210
+  s_7752c39f82bbbe::t_e5ef24093fb4a9 218-223
+  s_7752c39f82bbbe::t_70b692658087c4 225-227,237-239
+  s_7752c39f82bbbe::t_d4d663fa4ffad2 241-246
+  s_7752c39f82bbbe::t_9f181ab4bc830b 228-236
+trendradar/workbench/monitor_api.py
+  s_7752c39f82bbbe::t_2a72caa319c604 73,75
+  s_7752c39f82bbbe::t_ff68cf22241719 65-66
+  s_7752c39f82bbbe::t_05b019de911d71 61-62
+  s_7752c39f82bbbe::t_366e9e31e3d0af 1-60,63-64,67-72,74,76-108
+trendradar/workbench/control.py
+  s_7752c39f82bbbe::t_b2af7ae62dfaab 1,8,30,40,62-63,75-76,78-79,101,103-110,112,115-117
+  s_7752c39f82bbbe::t_92e4c88841c2e8 10,14-24,85
+  s_7752c39f82bbbe::t_c46c0ed6419bd6 48-55,77
+  s_7752c39f82bbbe::t_5d3ce52455588a 13,86,102
+  s_7752c39f82bbbe::t_0bc52d7dd90300 113-114
+  s_7752c39f82bbbe::t_082026a4d201bb 111
+  s_7752c39f82bbbe::t_a8ebb9e6f00899 11-12
+frontend/src/components/newsnowSources.ts
+  s_7752c39f82bbbe::t_41e34dc4d5404f 42,54-55,60,138-139,150,204,294-295,319
+  s_7752c39f82bbbe::t_22c467f26588d8 1,7,36-37,43,48-49,61,66-67,132-133,144-145,151,156-157,168-169,174-175,198-199,205,210-211,216-217,270-271,276-277,306-307,312-313
+  s_7752c39f82bbbe::t_bf9472153059e2 3-6,8-35,38-41,44-47,50-53,56-59,62-65,68-131,134-137,140-143,146-149,152-155,158-167,170-173,176-197,200-203,206-209,212-215,218-269,272-275,278-293,296-305,308-311,314-318
+  s_7752c39f82bbbe::t_fc419705de2b70 2
+frontend/public/assets/newsnow/LICENSE.txt
+  s_7752c39f82bbbe::t_22c467f26588d8 1-21
+frontend/src/components/ChannelDirectory.tsx
+  s_7752c39f82bbbe::t_a8979b60002fab 1-8,19-21,25,214
+  s_7752c39f82bbbe::t_bf9472153059e2 9-18,22-24,26-209,211-213
+  s_7752c39f82bbbe::t_aeb49981780fe9 210
+trendradar/crawler/fetcher.py
+  s_7752c39f82bbbe::t_f6dc60f804dea2 132-133
+trendradar/workbench/api.py
+  s_7752c39f82bbbe::t_ae311cdb69daf2 58-59,70,86-87,105,186-189,200-202
+frontend/src/components/Managers.tsx
+  s_7752c39f82bbbe::t_bd13f165b29bda 518-519
+tests/workbench/test_workbench.py
+  s_7752c39f82bbbe::t_a2f1d9ae3f674a 64
+vendor/newsnow/.cursorindexingignore
+  s_7752c39f82bbbe::t_f162901beef2a1 1-3
+vendor/newsnow/.dockerignore
+  s_7752c39f82bbbe::t_3189949d72d685 1-12
+vendor/newsnow/.github/workflows/docker.yml
+  s_7752c39f82bbbe::t_adab105c1f7e84 1-49
+vendor/newsnow/.github/workflows/release.yml
+  s_7752c39f82bbbe::t_070909b3655834 1-25
+vendor/newsnow/.gitignore
+  s_7752c39f82bbbe::t_242c79d557a3ce 1-17
+vendor/newsnow/.vscode/settings.json
+  s_7752c39f82bbbe::t_a28d1e06602943 1-3
+vendor/newsnow/CONTRIBUTING.md
+  s_7752c39f82bbbe::t_6d46aaa79aee91 1-204
+vendor/newsnow/Dockerfile
+  s_7752c39f82bbbe::t_07099834c97eb5 1-14
+vendor/newsnow/LICENSE
+  s_7752c39f82bbbe::t_8710e9b0079918 1-21
+vendor/newsnow/RADAR-PATCHES.md
+  s_7752c39f82bbbe::t_4de6a2865bfcf6 1-19
+vendor/newsnow/README.ja-JP.md
+  s_7752c39f82bbbe::t_1d314679d80573 1-115
+vendor/newsnow/README.md
+  s_7752c39f82bbbe::t_6f91dd99b3501f 1-137
+vendor/newsnow/README.zh-CN.md
+  s_7752c39f82bbbe::t_fc643fb49943ca 1-115
+vendor/newsnow/docker-compose.local.yml
+  s_7752c39f82bbbe::t_42a59f6159c0e8 1-17
+vendor/newsnow/docker-compose.yml
+  s_7752c39f82bbbe::t_04c40ded566f21 1-22
+vendor/newsnow/eslint.config.mjs
+  s_7752c39f82bbbe::t_d7bc980ff1c527 1-7
+vendor/newsnow/example.env.server
+  s_7752c39f82bbbe::t_b20990338dd6a5 1-6
+vendor/newsnow/example.wrangler.toml
+  s_7752c39f82bbbe::t_71fcf77a734159 1-8
+vendor/newsnow/index.html
+  s_7752c39f82bbbe::t_76a0ade8532b6c 1-67
+vendor/newsnow/nitro.config.ts
+  s_7752c39f82bbbe::t_b16e8563ce9248 1-70
+vendor/newsnow/package.json
+  s_7752c39f82bbbe::t_b7e3a2049f8992 1-182
+vendor/newsnow/patches/dayjs.patch
+  s_7752c39f82bbbe::t_bebbcb29598408 1-61
+vendor/newsnow/pnpm-lock.yaml
+  s_7752c39f82bbbe::t_150eb5d3280945 1-15450
+vendor/newsnow/public/_headers
+  s_7752c39f82bbbe::t_005f694ac3b482 1-8
+vendor/newsnow/public/icon.svg
+  s_7752c39f82bbbe::t_492550b75b5ab8 1-6
+vendor/newsnow/public/robots.txt
+  s_7752c39f82bbbe::t_38846ab4fb2edc 1-2
+vendor/newsnow/public/sitemap.xml
+  s_7752c39f82bbbe::t_415fa9886d61ad 1-9
+vendor/newsnow/public/sw.js
+  s_7752c39f82bbbe::t_9752416ec3e107 1-23
+vendor/newsnow/pwa.config.ts
+  s_7752c39f82bbbe::t_d97afc7d1cdb67 1-53
+vendor/newsnow/scripts/favicon.ts
+  s_7752c39f82bbbe::t_c5ec684d894a9f 1-44
+vendor/newsnow/scripts/source.ts
+  s_7752c39f82bbbe::t_ba1c178f78d355 1-151
+vendor/newsnow/server/api/enable-login.ts
+  s_7752c39f82bbbe::t_3c05c3a66631bc 1-8
+vendor/newsnow/server/api/latest.ts
+  s_7752c39f82bbbe::t_be292a2c842123 1-5
+vendor/newsnow/server/api/login.ts
+  s_7752c39f82bbbe::t_0ca843008c3392 1-5
+vendor/newsnow/server/api/me/index.ts
+  s_7752c39f82bbbe::t_ce8a60e3006b73 1-5
+vendor/newsnow/server/api/me/sync.ts
+  s_7752c39f82bbbe::t_6ce6b04e04c9d2 1-34
+vendor/newsnow/server/api/oauth/github.ts
+  s_7752c39f82bbbe::t_33a986f2d343b9 1-72
+vendor/newsnow/server/api/s/entire.post.ts
+  s_7752c39f82bbbe::t_e9dede46718157 1-22
+vendor/newsnow/server/api/s/health.ts
+  s_7752c39f82bbbe::t_2f691e7825eecf 1
+vendor/newsnow/server/database/cache.ts
+  s_7752c39f82bbbe::t_7384d4b1ebaf94 1-84
+vendor/newsnow/server/database/user.ts
+  s_7752c39f82bbbe::t_38ab3e9fd14803 1-69
+vendor/newsnow/server/getters.ts
+  s_7752c39f82bbbe::t_231376d8ea7428 1-15
+vendor/newsnow/server/glob.d.ts
+  s_7752c39f82bbbe::t_f770d5207607a3 1-50
+vendor/newsnow/server/middleware/auth.ts
+  s_7752c39f82bbbe::t_345f700004bcd5 1-33
+vendor/newsnow/server/sources/_36kr.ts
+  s_7752c39f82bbbe::t_e4aabc62f28e64 1-89
+vendor/newsnow/server/sources/aihot.ts
+  s_7752c39f82bbbe::t_228fae210bdcb9 1
+vendor/newsnow/server/sources/baidu.ts
+  s_7752c39f82bbbe::t_6973b95e1cd612 1-29
+vendor/newsnow/server/sources/bilibili.ts
+  s_7752c39f82bbbe::t_5ae4afcb88028d 1-151
+vendor/newsnow/server/sources/cankaoxiaoxi.ts
+  s_7752c39f82bbbe::t_322aad355a2113 1-23
+vendor/newsnow/server/sources/chongbuluo.ts
+  s_7752c39f82bbbe::t_adb32f913af120 1-32
+vendor/newsnow/server/sources/cls/index.ts
+  s_7752c39f82bbbe::t_85068227443216 1-89
+vendor/newsnow/server/sources/cls/utils.ts
+  s_7752c39f82bbbe::t_3a316c25115661 1-13
+vendor/newsnow/server/sources/coolapk/index.ts
+  s_7752c39f82bbbe::t_dbad6607a5cda7 1-40
+vendor/newsnow/server/sources/coolapk/utils.ts
+  s_7752c39f82bbbe::t_6e797d8378cbce 1-31
+vendor/newsnow/server/sources/dongqiudi.ts
+  s_7752c39f82bbbe::t_493bb570602949 1-29
+vendor/newsnow/server/sources/douban.ts
+  s_7752c39f82bbbe::t_bee78c7cbd6b64 1-47
+vendor/newsnow/server/sources/fastbull.ts
+  s_7752c39f82bbbe::t_c88024e97cbfe9 1-59
+vendor/newsnow/server/sources/freebuf.ts
+  s_7752c39f82bbbe::t_fa2fa039a4175c 1-78
+vendor/newsnow/server/sources/gelonghui.ts
+  s_7752c39f82bbbe::t_96ef3e8d11ba7c 1-31
+vendor/newsnow/server/sources/ghxi.ts
+  s_7752c39f82bbbe::t_88e26f0f46cbf3 1-60
+vendor/newsnow/server/sources/github.ts
+  s_7752c39f82bbbe::t_24a91434a9f3cf 1-34
+vendor/newsnow/server/sources/hackernews.ts
+  s_7752c39f82bbbe::t_c67665672bf0ae 1-57
+vendor/newsnow/server/sources/hupu.ts
+  s_7752c39f82bbbe::t_e7af5292446899 1-37
+vendor/newsnow/server/sources/ifeng.ts
+  s_7752c39f82bbbe::t_48efc5c94ae040 1-27
+vendor/newsnow/server/sources/iqiyi.ts
+  s_7752c39f82bbbe::t_ac5ed2d7d614c3 1-64
+vendor/newsnow/server/sources/ithome.ts
+  s_7752c39f82bbbe::t_47f556351b37cd 1-28
+vendor/newsnow/server/sources/jin10.ts
+  s_7752c39f82bbbe::t_05006e79028d1d 1-48
+vendor/newsnow/server/sources/juejin.ts
+  s_7752c39f82bbbe::t_330ed935cdcf47 1-21
+vendor/newsnow/server/sources/kaopu.ts
+  s_7752c39f82bbbe::t_071c84ca10e6ee 1
+vendor/newsnow/server/sources/kuaishou.ts
+  s_7752c39f82bbbe::t_dd6bce3f2c49e7 1-61
+vendor/newsnow/server/sources/linuxdo.ts
+  s_7752c39f82bbbe::t_519dfab9eb7a6b 1-61
+vendor/newsnow/server/sources/mktnews.ts
+  s_7752c39f82bbbe::t_923b3089dadd45 1-55
+vendor/newsnow/server/sources/nowcoder.ts
+  s_7752c39f82bbbe::t_41e01e408fd050 1-32
+vendor/newsnow/server/sources/pcbeta.ts
+  s_7752c39f82bbbe::t_fb80994d649597 1-44
+vendor/newsnow/server/sources/producthunt.ts
+  s_7752c39f82bbbe::t_0a9685c26f0ef0 1-63
+vendor/newsnow/server/sources/qqvideo.ts
+  s_7752c39f82bbbe::t_0521205902127a 1-163
+vendor/newsnow/server/sources/smzdm.ts
+  s_7752c39f82bbbe::t_7230864efcc9ff 1-21
+vendor/newsnow/server/sources/solidot.ts
+  s_7752c39f82bbbe::t_4c221774bbc237 1
+vendor/newsnow/server/sources/sputniknewscn.ts
+  s_7752c39f82bbbe::t_74da5e8be050be 1-29
+vendor/newsnow/server/sources/sspai.ts
+  s_7752c39f82bbbe::t_9c104ac04e02be 1-21
+vendor/newsnow/server/sources/steam.ts
+  s_7752c39f82bbbe::t_0a8aa0768fe020 1-32
+vendor/newsnow/server/sources/tencent.ts
+  s_7752c39f82bbbe::t_a10347cf0a9ef7 1-63
+vendor/newsnow/server/sources/thepaper.ts
+  s_7752c39f82bbbe::t_a9cd2cff3ffaf1 1-23
+vendor/newsnow/server/sources/tieba.ts
+  s_7752c39f82bbbe::t_f1aee0689fbaf6 1-26
+vendor/newsnow/server/sources/toutiao.ts
+  s_7752c39f82bbbe::t_4814c8a7a5392f 1-29
+vendor/newsnow/server/sources/v2ex.ts
+  s_7752c39f82bbbe::t_90f948167449bb 1-35
+vendor/newsnow/server/sources/wallstreetcn.ts
+  s_7752c39f82bbbe::t_d9c7e4ef0d4363 1-87
+vendor/newsnow/server/sources/zaobao.ts
+  s_7752c39f82bbbe::t_d04913cde4762b 1-30
+vendor/newsnow/server/sources/zhihu.ts
+  s_7752c39f82bbbe::t_8e8b5d3443280b 1-54
+vendor/newsnow/server/types.ts
+  s_7752c39f82bbbe::t_1e41d52db9e814 1-66
+vendor/newsnow/server/utils/base64.ts
+  s_7752c39f82bbbe::t_97fdcf220dc662 1-17
+vendor/newsnow/server/utils/crypto.ts
+  s_7752c39f82bbbe::t_3c42ea490866d4 1-24
+vendor/newsnow/server/utils/date.test.ts
+  s_7752c39f82bbbe::t_17368a2caf276d 1-185
+vendor/newsnow/server/utils/date.ts
+  s_7752c39f82bbbe::t_7064205804b90d 1-225
+vendor/newsnow/server/utils/logger.ts
+  s_7752c39f82bbbe::t_df16e439dc77fc 1-11
+vendor/newsnow/server/utils/rss2json.ts
+  s_7752c39f82bbbe::t_ccfb3c33d7c83b 1-83
+vendor/newsnow/server/utils/source.ts
+  s_7752c39f82bbbe::t_8011e4a8ee18f3 1-46
+vendor/newsnow/shared/consts.ts
+  s_7752c39f82bbbe::t_7bc24e73745472 1-15
+vendor/newsnow/shared/dir.ts
+  s_7752c39f82bbbe::t_c863122271c5e7 1-3
+vendor/newsnow/shared/metadata.ts
+  s_7752c39f82bbbe::t_f257d6917f6e84 1-76
+vendor/newsnow/shared/pinyin.json
+  s_7752c39f82bbbe::t_998ebeb7180417 1-54
+vendor/newsnow/shared/pre-sources.ts
+  s_7752c39f82bbbe::t_5dc172e7a0a6c2 1-556
+vendor/newsnow/shared/sources.json
+  s_7752c39f82bbbe::t_872c3744a2142e 1-587
+vendor/newsnow/shared/sources.ts
+  s_7752c39f82bbbe::t_733dc8c1d872b7 1-5
+vendor/newsnow/shared/type.util.ts
+  s_7752c39f82bbbe::t_a717cb77ddacc2 1-23
+vendor/newsnow/shared/updated-sources.ts
+  s_7752c39f82bbbe::t_6f1d70b260e18e 1-10
+vendor/newsnow/shared/utils.ts
+  s_7752c39f82bbbe::t_7716881210d2e0 1-40
+vendor/newsnow/shared/verify.ts
+  s_7752c39f82bbbe::t_6bdac5d377dd6b 1-15
+vendor/newsnow/src/atoms/index.ts
+  s_7752c39f82bbbe::t_1235ba977b391b 1-40
+vendor/newsnow/src/atoms/primitiveMetadataAtom.ts
+  s_7752c39f82bbbe::t_bdc7818a87b5c4 1-60
+vendor/newsnow/src/atoms/types.ts
+  s_7752c39f82bbbe::t_77280df8177418 1-15
+vendor/newsnow/src/components/column/card.tsx
+  s_7752c39f82bbbe::t_7ad4ad943b6aae 1-293
+vendor/newsnow/src/components/column/dnd.tsx
+  s_7752c39f82bbbe::t_8b29dfc554d855 1-199
+vendor/newsnow/src/components/column/index.tsx
+  s_7752c39f82bbbe::t_0a296648f7e981 1-23
+vendor/newsnow/src/components/common/dnd/index.tsx
+  s_7752c39f82bbbe::t_701f4f2fd56229 1-32
+vendor/newsnow/src/components/common/dnd/useSortable.ts
+  s_7752c39f82bbbe::t_bb61d3c6f4dc2e 1-76
+vendor/newsnow/src/components/common/overlay-scrollbar/index.tsx
+  s_7752c39f82bbbe::t_b6a56072b72ca6 1-125
+vendor/newsnow/src/components/common/overlay-scrollbar/style.css
+  s_7752c39f82bbbe::t_39c8a81daefc4a 1-12
+vendor/newsnow/src/components/common/overlay-scrollbar/useOverlayScrollbars.ts
+  s_7752c39f82bbbe::t_81d8502fa5669e 1-152
+vendor/newsnow/src/components/common/search-bar/cmdk.css
+  s_7752c39f82bbbe::t_85a6daa6f668c8 1-78
+vendor/newsnow/src/components/common/search-bar/index.tsx
+  s_7752c39f82bbbe::t_566637ba55d044 1-136
+vendor/newsnow/src/components/common/toast.tsx
+  s_7752c39f82bbbe::t_9533f82f0d5dde 1-101
+vendor/newsnow/src/components/footer.tsx
+  s_7752c39f82bbbe::t_d8daa600d110ab 1-13
+vendor/newsnow/src/components/header/index.tsx
+  s_7752c39f82bbbe::t_5d36d85b032702 1-79
+vendor/newsnow/src/components/header/menu.tsx
+  s_7752c39f82bbbe::t_b5b98ff57879ca 1-96
+vendor/newsnow/src/components/navbar.tsx
+  s_7752c39f82bbbe::t_8853b4e29a6716 1-39
+vendor/newsnow/src/hooks/query.ts
+  s_7752c39f82bbbe::t_15507c9cce2b70 1-53
+vendor/newsnow/src/hooks/useDark.ts
+  s_7752c39f82bbbe::t_aa33849b70323c 1-26
+vendor/newsnow/src/hooks/useFocus.ts
+  s_7752c39f82bbbe::t_4ede9871e0206e 1-28
+vendor/newsnow/src/hooks/useLogin.ts
+  s_7752c39f82bbbe::t_d55ca4298616f2 1-47
+vendor/newsnow/src/hooks/useOnReload.ts
+  s_7752c39f82bbbe::t_f11707f2c65987 1-28
+vendor/newsnow/src/hooks/usePWA.ts
+  s_7752c39f82bbbe::t_45c9ba961e5412 1-33
+vendor/newsnow/src/hooks/useRefetch.ts
+  s_7752c39f82bbbe::t_35c7dc8cb923e2 1-31
+vendor/newsnow/src/hooks/useRelativeTime.ts
+  s_7752c39f82bbbe::t_9c71c47bb58ddf 1-44
+vendor/newsnow/src/hooks/useSearch.ts
+  s_7752c39f82bbbe::t_37ed4bbf767bbc 1-13
+vendor/newsnow/src/hooks/useSync.ts
+  s_7752c39f82bbbe::t_8849acba480b03 1-89
+vendor/newsnow/src/hooks/useToast.ts
+  s_7752c39f82bbbe::t_d20f59a1a28278 1-16
+vendor/newsnow/src/main.tsx
+  s_7752c39f82bbbe::t_41d297b0f0d679 1-31
+vendor/newsnow/src/routeTree.gen.ts
+  s_7752c39f82bbbe::t_95cf13a83640f7 1-77
+vendor/newsnow/src/routes/__root.tsx
+  s_7752c39f82bbbe::t_b26691c106de42 1-77
+vendor/newsnow/src/routes/c.$column.tsx
+  s_7752c39f82bbbe::t_beaefa82208575 1-26
+vendor/newsnow/src/routes/index.tsx
+  s_7752c39f82bbbe::t_c10c0b8cd1df1b 1-13
+vendor/newsnow/src/styles/globals.css
+  s_7752c39f82bbbe::t_ecd4a332b56b18 1-58
+vendor/newsnow/src/utils/data.ts
+  s_7752c39f82bbbe::t_3ebffd7b0f8ff3 1-4
+vendor/newsnow/src/utils/index.ts
+  s_7752c39f82bbbe::t_d57550e1335cdf 1-56
+vendor/newsnow/src/utils/pwa.ts
+  s_7752c39f82bbbe::t_11a7546055aa10 1-108
+vendor/newsnow/src/vite-env.d.ts
+  s_7752c39f82bbbe::t_8bc595461c94ea 1-3
+vendor/newsnow/test/common.test.ts
+  s_7752c39f82bbbe::t_8b06c45411210f 1-5
+vendor/newsnow/tools/rollup-glob.ts
+  s_7752c39f82bbbe::t_0a22050a73c364 1-78
+vendor/newsnow/tsconfig.app.json
+  s_7752c39f82bbbe::t_dddfa9c2c81839 1-14
+vendor/newsnow/tsconfig.base.json
+  s_7752c39f82bbbe::t_a3452c0774f8e9 1-20
+vendor/newsnow/tsconfig.json
+  s_7752c39f82bbbe::t_fffe083a8c71e6 1-7
+vendor/newsnow/tsconfig.node.json
+  s_7752c39f82bbbe::t_d92646506d5f0d 1-13
+vendor/newsnow/uno.config.ts
+  s_7752c39f82bbbe::t_e77418bf72da89 1-49
+vendor/newsnow/vite.config.ts
+  s_7752c39f82bbbe::t_71838ac5b3f216 1-45
+vendor/newsnow/vitest.config.ts
+  s_7752c39f82bbbe::t_2e5aed250e0aeb 1-32
+vendor/newsnow/server/api/s/index.ts
+  s_7752c39f82bbbe::t_2ba8a21d5b1ebb 1-42
+vendor/newsnow/server/sources/douyin.ts
+  s_7752c39f82bbbe::t_52b9503ffdb94c 1-27
+vendor/newsnow/server/sources/weibo.ts
+  s_7752c39f82bbbe::t_d9e59747a5a431 1-15
+vendor/newsnow/server/sources/xueqiu.ts
+  s_7752c39f82bbbe::t_068cf60b379784 1-37
+vendor/newsnow/server/utils/fetch.ts
+  s_7752c39f82bbbe::t_b281b01f1522ca 1-9
+vendor/newsnow/server/utils/source-error.test.ts
+  s_7752c39f82bbbe::t_e519098283a214 1-21
+vendor/newsnow/server/utils/source-error.ts
+  s_7752c39f82bbbe::t_a270f50ac01a8a 1-21
+vendor/newsnow/server/utils/source-items.test.ts
+  s_7752c39f82bbbe::t_4fe341e35f6895 1-7
+vendor/newsnow/server/utils/source-items.ts
+  s_7752c39f82bbbe::t_6fe255ba39b59d 1-13
+vendor/newsnow/server/utils/weibo-hot-search.test.ts
+  s_7752c39f82bbbe::t_f93167a2fe5a39 1-54
+vendor/newsnow/server/utils/weibo-hot-search.ts
+  s_7752c39f82bbbe::t_a3f8951bbb713b 1-39
+vendor/newsnow/shared/types.ts
+  s_7752c39f82bbbe::t_7c4649240e5bb3 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2cdb2abbd93c4a8202eba230d3611528f36cebdc",
+  "prompts": {},
+  "sessions": {
+    "s_36fd7ece90252a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a5b9-29e5-7b40-a57c-c9aac80bc860",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "厉智豪 <zhli6@leqee.com>"
+    },
+    "s_7752c39f82bbbe": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a095-4981-7611-97c7-c66d5a7af728",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "厉智豪 <zhli6@leqee.com>"
+    }
+  }
+}
