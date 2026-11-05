@@ -1,4 +1,23 @@
 services:
+  newsnow:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.newsnow
+    image: aitrendradar-newsnow:local
+    volumes:
+      - newsnow-cache:/app/.data
+    environment:
+      NEWSNOW_WEIBO_COOKIE: ${NEWSNOW_WEIBO_COOKIE:-}
+      PRODUCTHUNT_API_TOKEN: ${PRODUCTHUNT_API_TOKEN:-}
+      HTTP_PROXY: ${NEWSNOW_HTTP_PROXY:-}
+      HTTPS_PROXY: ${NEWSNOW_HTTPS_PROXY:-}
+      NO_PROXY: localhost,127.0.0.1,::1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8788/api/s/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
   web:
     build:
       context: ..
@@ -34,7 +53,25 @@ services:
     environment:
       RADAR_ROOT: /app
       RADAR_DB: /app/output/workbench.sqlite3
+      NEWSNOW_URL: http://newsnow:8788
     restart: unless-stopped
     stop_grace_period: 20s
+  monitor:
+    image: aitrendradar-workbench:local
+    command: [".venv/bin/python", "-m", "trendradar.workbench", "monitor", "--root", "/app"]
+    depends_on:
+      web:
+        condition: service_healthy
+      newsnow:
+        condition: service_healthy
+    volumes:
+      - radar-data:/app/output
+    environment:
+      RADAR_ROOT: /app
+      RADAR_DB: /app/output/workbench.sqlite3
+      NEWSNOW_URL: http://newsnow:8788
+    restart: unless-stopped
+    stop_grace_period: 60s
 volumes:
   radar-data:
+  newsnow-cache:

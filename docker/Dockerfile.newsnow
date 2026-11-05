@@ -1,0 +1,16 @@
+FROM node:24-bookworm-slim AS builder
+WORKDIR /app
+RUN npm install --global pnpm@10.30.3
+COPY vendor/newsnow/ ./
+ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=1
+RUN pnpm install --frozen-lockfile && pnpm run build:radar
+
+FROM node:24-bookworm-slim
+WORKDIR /app
+COPY --from=builder /app/dist/output ./output
+COPY vendor/newsnow/LICENSE vendor/newsnow/RADAR-PATCHES.md ./
+RUN mkdir -p .data && chown -R node:node /app
+USER node
+ENV HOST=0.0.0.0 PORT=8788 NODE_ENV=production ENABLE_CACHE=true INIT_TABLE=true NODE_USE_ENV_PROXY=1
+EXPOSE 8788
+CMD ["node", "output/server/index.mjs"]

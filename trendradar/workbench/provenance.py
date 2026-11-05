@@ -19,6 +19,14 @@ def source_identity(source):
     publisher, delivery, channel = 'unverified', 'custom_rss', '自定义 RSS · 身份未核验'
     if kind == 'hotlist':
         publisher, delivery, channel = 'aggregator', 'aggregator_api', 'NewsNow 第三方聚合'
+        from .monitor_catalog import CATALOG
+        if sid in {r[0] if r[6] else 'newsnow:'+r[0] for r in CATALOG}:
+            publisher,delivery,channel='aggregator','local_newsnow','NewsNow 本地适配器 · 网页/公开端点'
+            upstream=sid.removeprefix('newsnow:')
+            if upstream in {'thepaper','ifeng','wallstreetcn-hot','wallstreetcn-quick','cls-hot','cls-telegraph','36kr-quick','ithome','sspai','jin10','gelonghui','tencent-hot'}:
+                publisher='media'
+            elif upstream in {'weibo','zhihu','tieba','v2ex-share','coolapk','juejin','nowcoder','hupu'}:
+                publisher='community'
     elif kind == 'x':
         publisher, delivery, channel = 'community', 'unconfigured', '尚未接入'
     elif sid in KNOWN:

@@ -50,6 +50,7 @@ class TextOnly(HTMLParser):
 def plain(value, limit=6000):
     parser = TextOnly()
     parser.feed(str(value or ""))
+    parser.close()  # Flush trailing text containing a literal '&' or incomplete entity.
     return re.sub(r"\s+", " ", html.unescape(" ".join(parser.parts))).strip()[:limit]
 
 

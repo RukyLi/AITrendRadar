@@ -61,7 +61,7 @@ def test_urls_and_untrusted_html(store):
 
 def test_hotlist_dynamic_urls_match_legacy_archive(store):
     with store.connect() as db:
-        db.execute("INSERT INTO sources(id,name,kind) VALUES('weibo','微博','hotlist')")
+        db.execute("INSERT OR IGNORE INTO sources(id,name,kind) VALUES('weibo','微博','hotlist')")
     first=article(store,sid='weibo',url='https://s.weibo.com/weibo?q=AI&band_rank=3&Refer=top&t=31')
     second=article(store,sid='weibo',url='https://s.weibo.com/weibo?q=AI')
     third=article(store,sid='weibo',url='https://s.weibo.com/weibo?q=AI&band_rank=1')

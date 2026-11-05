@@ -1342,12 +1342,16 @@ GitHub Pages 在国内访问较慢，[Cloudflare Pages](https://pages.cloudflare
    uv sync --locked --python 3.12
    npm --prefix frontend ci
    npm --prefix frontend run build
-   bash start-local.sh start   # http://127.0.0.1:8787，同时启动 Web 和 Worker
-   bash start-local.sh status  # 查看两个进程状态
+   # Node 24；采集服务使用上游锁定的 pnpm 版本
+   npm install --global pnpm@10.30.3
+   SKIP_INSTALL_SIMPLE_GIT_HOOKS=1 pnpm --dir vendor/newsnow install --frozen-lockfile
+   pnpm --dir vendor/newsnow run build:radar
+   bash start-local.sh start   # http://127.0.0.1:8787，统一启动四个服务
+   bash start-local.sh status  # Web / AI Worker / Monitor Worker / NewsNow
    bash start-local.sh stop    # 停止工作台
    ```
 
-   项目本地安装的 uv 可使用 `.tools/bin/uv`；已有 `.venv` 时无需重复安装。`web` 是 `start` 的别名。Web 与 Worker 在后台运行，关闭终端后可继续使用；电脑休眠或关机期间不采集。日志位于 `.run/workbench-serve.log` 和 `.run/workbench-worker.log`，`WEB_PORT` 可修改端口。
+   项目本地安装的 uv 可使用 `.tools/bin/uv`；已有 `.venv` 时无需重复安装。`web` 是 `start` 的别名。Web、AI Worker、Monitor Worker 与 NewsNow 在后台运行，关闭终端后可继续使用；电脑休眠或关机期间不采集。日志位于 `.run/workbench-*.log`。`WEB_PORT` 默认 8787，`NEWSNOW_PORT` 默认 8788；两者仅绑定回环地址。
 
    **工作台使用方式**
 
@@ -1362,6 +1366,18 @@ GitHub Pages 在国内访问较慢，[Cloudflare Pages](https://pages.cloudflare
    - AI 仅自动解读当轮新增或变化的最多 20 个关注事件；历史导入不自动补跑。单个事件可手动解读。模型故障不影响浏览、搜索与收藏。简报会保留版本，模型不可用时保留带来源的摘录版。
    - 新内容不会自动插入正在阅读的列表，点击更新提示再刷新。网络失败或限流按来源退避，其他来源继续更新。
 
+   **国内实时监控（独立入口）**
+
+   - 沿用 NewsNow 的来源卡片：固定高度、卡片内滚动、完整标题、点击直达原文；星标来源收进「关注」。热榜、快讯均按来源展示，关键词提醒和历史保留独立入口。国内平台可能报道国际事件，综合内容不经过 AI 相关性门槛；AI 情报首页仍只展示审核通过的资讯。
+   - 完整接入固定版本的 52 个独立频道（去掉 14 个重定向别名），按国内 20、国际 5、科技 13、财经 12、体育 2 分类。默认入口为「全部频道」；热榜 31 路、快讯 21 路。「更多来源」支持名称搜索、分类与可用状态筛选、自由星标、自动采集开关、单源及全量检查。已有星标、排序、文章和收藏保留。
+   - 每个频道使用 NewsNow 固定目录给出的最小间隔（2–60 分钟），目录显示具体频率。手动检查遵守最小间隔，自动失败重试采用退避。页面每 30 秒检查更新，点击提示后再应用到列表。
+   - 榜单位次仅代表采集前 30 条。首次采集建立基线，后续记录新增、升降、再次出现与离开采集范围。失败、异常空列表及旧缓存不产生下榜事件；不能保证捕获两次采样之间的全部变化。
+   - 来源设置分别控制采集与订阅，支持拖动和上下移动；首次取得有效内容后才有历史记录；有效缓存首次接入会标注为缓存基线，不产生提醒。默认保留 30 天快照和提醒，可设置 7–90 天；始终保留每源最后一份有效快照，清理不删除文章或收藏。
+   - 关注规则支持包含词、排除词、来源范围。包含词任一命中即可，英文忽略大小写；只匹配实际采集的标题和摘要。默认提醒首次出现及上升至少 5 位，相同规则/条目/提醒类型冷却 60 分钟。创建规则不回放历史提醒。
+   - 受限来源保留错误原因，其余来源继续采集。微博已改为读取网页版公开 JSON 热搜接口，过滤广告与置顶，保留原有条目 ID；当前匿名访问可用。如部署环境需要 Cookie，仍可在本地 `.env.local` 设置 `NEWSNOW_WEIBO_COOKIE` 后重启；不要提交凭据。Cookie 仅进入 NewsNow 进程，不返回前端。远景论坛 RSS 目前返回人机验证页，保留“访问受限”状态，不将旧缓存冒充实时内容。自托管适配器不等同于官方授权 API。逐源检查与修复记录见 [频道可用性记录](docs/newsnow-channel-checks.md)。
+   - 采集服务固定在 NewsNow `0560c993b226cd2fd07d8a79875d50551f52c584`，保留 MIT 许可证。本地补丁见 [RADAR-PATCHES.md](vendor/newsnow/RADAR-PATCHES.md)。AI 任务与监控使用独立队列、恢复范围和心跳；原 11 个热榜继续写入日归档。
+   - 新接口：`/api/v1/monitor/sources`、`/boards`、`/timeline`、`/history`、`/watches`、`/alerts`、`/changes`。`/boards` 支持按 `mode` 和 `category` 查询，`include_disabled=true` 保留暂停频道；`/sources` 返回可用状态、错误类别、具体原因和检查时间。`/jobs` 支持 `monitor_update`、`monitor_test`；`/health` 包含 `monitor_heartbeat`。采集不在页面请求内执行。
+
    **相关性审核与事件去重**
 
    关键词仅用于召回热榜候选，所有 RSS 条目均可进入审核；未命中规则的综合热榜保留在归档，支持手动审核。模型根据已采集资料给出相关、无关或不确定结论，相关/无关置信度至少 0.8 才确认；无效结构或引用不会放行。每轮更新最多审核 80 个候选，批量审核任务最多 500 个，历史数据不批量生成长摘要。内容或模型版本未变化时复用已校验结果；内容变化后重新审核，调用失败保留资料并退避 30 分钟。关闭 AI 后新内容先进入归档。
@@ -1370,7 +1386,7 @@ GitHub Pages 在国内访问较慢，[Cloudflare Pages](https://pages.cloudflare
 
    工作台使用 `output/workbench.sqlite3`（WAL 模式），日归档仍写入 `output/news/`、`output/rss/`，历史报告保留在 `output/html/`。首次启动将已有归档导入统一索引，重复导入不会重复文章；文章与事件 ID 跨天稳定。备份前运行 `stop`，然后备份整个 `output/`，避免遗漏 SQLite WAL 文件。
 
-   来源、工作台主题和工作台设置在首次启动后由应用库管理，后续编辑 YAML 不会覆盖网页设置。旧版 CLI 与 MCP 读取同一来源目录；MCP 的 `get_current_config` 同时提供工作台主题和设置。原版关键词词库、AI 兴趣筛选、通知、远程存储等高级功能仍通过原配置使用。不要同时启动旧版定时采集器和工作台 Worker，以免重复调用。
+   来源、工作台主题和工作台设置在首次启动后由应用库管理，后续编辑 YAML 不会覆盖网页设置。旧版 CLI 与 MCP 从统一库读取 RSS 和原有热榜目录；新增监控来源通过监控接口提供；MCP 的 `get_current_config` 同时提供工作台主题和设置。原版关键词词库、AI 兴趣筛选、通知、远程存储等高级功能仍通过原配置使用。不要同时启动旧版定时采集器和工作台 Worker，以免重复调用。
 
    保留的命令：
 
@@ -1392,12 +1408,12 @@ GitHub Pages 在国内访问较慢，[Cloudflare Pages](https://pages.cloudflare
    **Docker 部署**
 
    ```bash
-   docker compose -f docker/compose.workbench.yml up --build -d
-   docker compose -f docker/compose.workbench.yml logs -f worker
+   docker compose --env-file .env.local -f docker/compose.workbench.yml up --build -d
+   docker compose -f docker/compose.workbench.yml logs -f monitor newsnow worker
    docker compose -f docker/compose.workbench.yml down
    ```
 
-   默认仅映射 `127.0.0.1:8787`，数据保存在 `radar-data` 命名卷，`down` 不删除数据。镜像采用非 root 用户，不包含密钥或本地数据。首次容器启动使用空库；若要迁移本地数据，停机后将 `output/` 内容复制到命名卷并确认 UID 10001 可读写。Compose 需要支持 `env_file.required` 的版本。工作台为单用户本地应用，无公网登录模块；本方案不开放公网。
+   默认仅映射 `127.0.0.1:8787`，数据保存在 `radar-data` 命名卷，`down` 不删除数据。镜像采用非 root 用户，不包含密钥或本地数据。首次容器启动使用空库；若要迁移本地数据，停机后将 `output/` 内容复制到命名卷并确认 UID 10001 可读写。未使用 `.env.local` 时可省略 `--env-file .env.local`。Compose 需要支持 `env_file.required` 的版本。NewsNow 缓存单独保存在 `newsnow-cache` 卷。需要代理的环境可配置 `NEWSNOW_HTTP_PROXY` / `NEWSNOW_HTTPS_PROXY`；容器中的代理地址必须从容器可达（不能直接使用宿主机的 127.0.0.1）。工作台为单用户本地应用，无公网登录模块；本方案不开放公网。
 
    **开发与验证**
 

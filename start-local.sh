@@ -30,7 +30,7 @@ case "${1:-web}" in
     web|start)
         exec .venv/bin/python -m trendradar.workbench start --port "${WEB_PORT:-8787}" --root "$PWD"
         ;;
-    stop|status|worker|import|update)
+    stop|status|worker|monitor|newsnow|import|update)
         exec .venv/bin/python -m trendradar.workbench "$1" --port "${WEB_PORT:-8787}" --root "$PWD"
         ;;
     report)

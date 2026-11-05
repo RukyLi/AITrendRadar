@@ -1,0 +1,418 @@
+[
+  {
+    "id": "v2ex-share",
+    "name": "V2EX",
+    "title": "最新分享",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "zhihu",
+    "name": "知乎",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "weibo",
+    "name": "微博",
+    "title": "实时热搜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 120
+  },
+  {
+    "id": "zaobao",
+    "name": "联合早报",
+    "title": "",
+    "category": "国际",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "coolapk",
+    "name": "酷安",
+    "title": "今日最热",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "mktnews-flash",
+    "name": "MKTNews",
+    "title": "快讯",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 120
+  },
+  {
+    "id": "wallstreetcn-quick",
+    "name": "华尔街见闻",
+    "title": "快讯",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 300
+  },
+  {
+    "id": "wallstreetcn-news",
+    "name": "华尔街见闻",
+    "title": "最新",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "wallstreetcn-hot",
+    "name": "华尔街见闻",
+    "title": "最热",
+    "category": "财经",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "36kr-quick",
+    "name": "36氪",
+    "title": "快讯",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "36kr-renqi",
+    "name": "36氪",
+    "title": "人气榜",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "douyin",
+    "name": "抖音",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "hupu",
+    "name": "虎扑",
+    "title": "主干道热帖",
+    "category": "体育",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "dongqiudi",
+    "name": "懂球帝",
+    "title": "头条",
+    "category": "体育",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "aihot",
+    "name": "AIHOT",
+    "title": "",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 300
+  },
+  {
+    "id": "tieba",
+    "name": "百度贴吧",
+    "title": "热议",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "toutiao",
+    "name": "今日头条",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "ithome",
+    "name": "IT之家",
+    "title": "",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "thepaper",
+    "name": "澎湃新闻",
+    "title": "热榜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "sputniknewscn",
+    "name": "卫星通讯社",
+    "title": "",
+    "category": "国际",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "cankaoxiaoxi",
+    "name": "参考消息",
+    "title": "",
+    "category": "国际",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "pcbeta-windows11",
+    "name": "远景论坛",
+    "title": "Win11",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 300
+  },
+  {
+    "id": "cls-telegraph",
+    "name": "财联社",
+    "title": "电报",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 300
+  },
+  {
+    "id": "cls-depth",
+    "name": "财联社",
+    "title": "深度",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "cls-hot",
+    "name": "财联社",
+    "title": "热门",
+    "category": "财经",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "xueqiu-hotstock",
+    "name": "雪球",
+    "title": "热门股票",
+    "category": "财经",
+    "mode": "hottest",
+    "interval_seconds": 120
+  },
+  {
+    "id": "gelonghui",
+    "name": "格隆汇",
+    "title": "事件",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 120
+  },
+  {
+    "id": "fastbull-express",
+    "name": "法布财经",
+    "title": "快讯",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 120
+  },
+  {
+    "id": "fastbull-news",
+    "name": "法布财经",
+    "title": "头条",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "solidot",
+    "name": "Solidot",
+    "title": "",
+    "category": "科技",
+    "mode": "realtime",
+    "interval_seconds": 3600
+  },
+  {
+    "id": "hackernews",
+    "name": "Hacker News",
+    "title": "",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "producthunt",
+    "name": "Product Hunt",
+    "title": "",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "github-trending-today",
+    "name": "Github",
+    "title": "Today",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "bilibili-hot-search",
+    "name": "哔哩哔哩",
+    "title": "热搜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "bilibili-hot-video",
+    "name": "哔哩哔哩",
+    "title": "热门视频",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "bilibili-ranking",
+    "name": "哔哩哔哩",
+    "title": "排行榜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "kuaishou",
+    "name": "快手",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "kaopu",
+    "name": "靠谱新闻",
+    "title": "",
+    "category": "国际",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "jin10",
+    "name": "金十数据",
+    "title": "",
+    "category": "财经",
+    "mode": "realtime",
+    "interval_seconds": 600
+  },
+  {
+    "id": "baidu",
+    "name": "百度热搜",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "nowcoder",
+    "name": "牛客",
+    "title": "",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "sspai",
+    "name": "少数派",
+    "title": "",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "juejin",
+    "name": "稀土掘金",
+    "title": "",
+    "category": "科技",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "ifeng",
+    "name": "凤凰网",
+    "title": "热点资讯",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "chongbuluo-latest",
+    "name": "虫部落",
+    "title": "最新",
+    "category": "国内",
+    "mode": "realtime",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "chongbuluo-hot",
+    "name": "虫部落",
+    "title": "最热",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "douban",
+    "name": "豆瓣",
+    "title": "热门电影",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "steam",
+    "name": "Steam",
+    "title": "在线人数",
+    "category": "国际",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "tencent-hot",
+    "name": "腾讯新闻",
+    "title": "综合早报",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "freebuf",
+    "name": "Freebuf",
+    "title": "网络安全",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 600
+  },
+  {
+    "id": "qqvideo-tv-hotsearch",
+    "name": "腾讯视频",
+    "title": "热搜榜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "iqiyi-hot-ranklist",
+    "name": "爱奇艺",
+    "title": "热播榜",
+    "category": "国内",
+    "mode": "hottest",
+    "interval_seconds": 1800
+  }
+]

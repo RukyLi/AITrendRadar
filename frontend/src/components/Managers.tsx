@@ -515,6 +515,8 @@ export function JobsPanel({
                         analyze: "事件解读",
                         brief: "每日简报",
                         source_test: "来源测试",
+                        monitor_update: "国内监控",
+                        monitor_test: "监控来源测试",
                         curate: "相关性审核与事件聚合",
                         review: "单条相关性审核",
                       } as Record<string, string>

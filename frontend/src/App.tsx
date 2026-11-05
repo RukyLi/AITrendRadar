@@ -1,3 +1,4 @@
+import { MonitorView } from "./components/Monitor";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Hint, Modal, Empty, Skeleton } from "./components/Primitives";
 import { Detail, BriefDetail } from "./components/Detail";
@@ -53,7 +54,14 @@ import {
 } from "./api";
 
 type View =
-  "today" | "all" | "following" | "saved" | "articles" | "briefs" | "archive";
+  | "today"
+  | "all"
+  | "following"
+  | "saved"
+  | "articles"
+  | "briefs"
+  | "archive"
+  | "monitor";
 type Route = {
   view: View;
   q: string;
@@ -67,6 +75,7 @@ type Route = {
   page: number;
 };
 const titles: Record<View, string> = {
+  monitor: "国内实时监控",
   today: "今日精选",
   all: "全部事件",
   following: "我的关注",
@@ -241,6 +250,7 @@ export default function App() {
   }, [search, navigate]);
   const listKey = routeKey(route);
   useEffect(() => {
+    if (route.view === "monitor") return;
     let cancelled = false;
     const current = ++requestVersion.current;
     const cached = listCache.current.get(listKey);
@@ -446,7 +456,12 @@ export default function App() {
         }
         lastJobStatus.current = signature;
         const r = routeRef.current;
-        if (snapshot.current && r.view !== "briefs" && r.view !== "articles") {
+        if (
+          snapshot.current &&
+          r.view !== "monitor" &&
+          r.view !== "briefs" &&
+          r.view !== "articles"
+        ) {
           const params = new URLSearchParams({
             view: r.view,
             q: r.q,
@@ -502,6 +517,7 @@ export default function App() {
   };
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (route.view === "monitor") return;
       const target = e.target as HTMLElement;
       if (
         (e.metaKey || e.ctrlKey) &&
@@ -608,6 +624,7 @@ export default function App() {
         {(
           [
             { id: "today", icon: CalendarDays },
+            { id: "monitor", icon: Radio },
             { id: "all", icon: Layers3 },
             { id: "following", icon: Radio },
             { id: "saved", icon: Bookmark },
@@ -756,7 +773,11 @@ export default function App() {
               )}
             </button>
           </Hint>
-          <span className="topbar-section">AI 情报 · 个人阅读空间</span>
+          <span className="topbar-section">
+            {route.view === "monitor"
+              ? "国内动态 · 持续监控"
+              : "AI 情报 · 个人阅读空间"}
+          </span>
           <div className="top-actions">
             <button
               className="quick-trigger"
@@ -787,7 +808,11 @@ export default function App() {
         >
           <div className="mobile-sidebar">{sidebar}</div>
         </Modal>
-        <main className="reading-layout">
+        {route.view === "monitor" && <MonitorView notify={notify} />}
+        <main
+          className="reading-layout"
+          style={route.view === "monitor" ? { display: "none" } : undefined}
+        >
           <section
             className={
               "feed-panel " +

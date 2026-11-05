@@ -11,6 +11,8 @@ build/
 # Local credentials and runtime output (tracked sample data is unaffected)
 .env
 .env.local
+.env.*
+!.env.example
 .env.*.local
 .run/
 output/
@@ -21,3 +23,9 @@ node_modules/
 frontend/test-results/
 frontend/playwright-report/
 *.tsbuildinfo
+.data/
+.nitro/
+.output/
+vendor/newsnow/.env.server
+vendor/newsnow/.cache/
+vendor/newsnow/.tanstack/

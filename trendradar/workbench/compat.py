@@ -14,7 +14,9 @@ def apply_source_overrides(config, root):
     try:
         rows = connection.execute('SELECT * FROM sources').fetchall()
         config.setdefault('rss', {})['feeds'] = [dict(id=r['id'], name=r['name'], url=r['url'], enabled=bool(r['enabled'])) for r in rows if r['kind'] == 'rss']
-        config.setdefault('platforms', {})['sources'] = [{**json.loads(r['metadata']), 'id':r['id'], 'name':r['name'], 'enabled':bool(r['enabled'])} for r in rows if r['kind'] == 'hotlist']
+        config.setdefault('platforms', {})['sources'] = [{**json.loads(r['metadata']), 'id':r['id'], 'name':r['name'], 'enabled':bool(r['enabled'])} for r in rows if r['kind'] == 'hotlist' and not r['id'].startswith('newsnow:')]
+        import os
+        config['PLATFORMS_API_URL']=os.getenv('NEWSNOW_URL','http://127.0.0.1:'+os.getenv('NEWSNOW_PORT','8788')).rstrip('/')+'/api/s'
         config['workbench'] = {
             'topics': [dict(r) for r in connection.execute('SELECT * FROM topics')],
             'settings': {r['key']: json.loads(r['value']) for r in connection.execute("SELECT * FROM settings WHERE key NOT LIKE '\\_%' ESCAPE '\\'")},

@@ -48,3 +48,10 @@ frontend/playwright-report/
 # Required by the Python build and the React build stage
 !README.md
 !frontend/index.html
+**/node_modules/
+vendor/newsnow/dist/
+vendor/newsnow/.data/
+vendor/newsnow/.nitro/
+vendor/newsnow/.tanstack/
+!vendor/newsnow/index.html
+!vendor/newsnow/RADAR-PATCHES.md

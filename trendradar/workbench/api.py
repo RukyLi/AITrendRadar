@@ -55,6 +55,8 @@ class TopicInput(Input):
 
 
 class SettingsInput(Input):
+    monitor_enabled: bool | None=None
+    monitor_retention_days: int | None=Field(default=None,ge=7,le=90)
     interval_minutes: int | None=Field(default=None,ge=10,le=1440)
     schedule_enabled: bool | None=None
     brief_hour: int | None=Field(default=None,ge=0,le=23)
@@ -65,7 +67,7 @@ class SettingsInput(Input):
 
 
 class JobInput(Input):
-    kind: Literal['update','brief','analyze','source_test','curate','review']='update'
+    kind: Literal['update','brief','analyze','source_test','curate','review','monitor_update','monitor_test']='update'
     target: str=Field(default='',max_length=100)
 
 
@@ -81,6 +83,8 @@ def create_app(root=None, store=None):
 
     app=FastAPI(title='AITrendRadar Workbench',version='1.0.0',lifespan=lifespan)
     app.state.store=store
+    from .monitor_api import router
+    app.include_router(router(store))
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=os.getenv('RADAR_ALLOWED_HOSTS','localhost,127.0.0.1,[::1],testserver').split(','))
 
     @app.middleware('http')
@@ -98,7 +102,7 @@ def create_app(root=None, store=None):
         return response
 
     @app.get('/api/v1/health')
-    def health(): return {'status':'ok','worker_heartbeat':store.internal('_worker_heartbeat')}
+    def health(): return {'status':'ok','worker_heartbeat':store.internal('_worker_heartbeat'), 'monitor_heartbeat':store.internal('_monitor_heartbeat')}
 
     @app.get('/api/v1/meta')
     def meta(): return store.meta()
@@ -179,6 +183,10 @@ def create_app(root=None, store=None):
 
     @app.post('/api/v1/jobs',status_code=202)
     def enqueue(body:JobInput):
+        if body.kind in {'monitor_update','monitor_test'}:
+            from .monitor import Monitor
+            if body.target and not Monitor(store).source(body.target): raise HTTPException(404,'监控来源不存在')
+            return store.enqueue(body.kind,body.target)
         if body.kind in {'analyze','review','curate'} and not store.settings()['ai_enabled']:
             raise HTTPException(409,'请先在设置中开启 AI 审核与解读')
         if body.kind in {'analyze','review'}:
@@ -189,6 +197,9 @@ def create_app(root=None, store=None):
             source=store.source(body.target)
             if not source: raise HTTPException(404,'来源不存在')
             if source['kind']=='x': raise HTTPException(409,'X API 尚未接入')
+            from .monitor import Monitor
+            monitored=next((s for s in Monitor(store).sources() if s['source_id']==body.target),None)
+            if monitored: return store.enqueue('monitor_test',monitored['id'])
             target=body.target
         elif body.kind=='brief':
             from datetime import datetime

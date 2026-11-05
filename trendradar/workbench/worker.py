@@ -28,7 +28,7 @@ class Worker:
 
     def recover(self):
         with self.store.connect() as db:
-            db.execute("UPDATE jobs SET status='queued',stage='服务重启，等待恢复',progress=0 WHERE status='running'")
+            db.execute("UPDATE jobs SET status='queued',stage='服务重启，等待恢复',progress=0 WHERE status='running' AND kind NOT LIKE 'monitor_%'")
             db.execute("UPDATE events SET ai_status='pending' WHERE ai_status='running'")
 
     def heartbeat(self):
@@ -64,9 +64,12 @@ class Worker:
         raise FeedError('该来源等待官方 API 凭证，暂不支持自动采集')
 
     def collect(self, jid):
+        from .monitor import Monitor
+        monitored={s['source_id'] for s in Monitor(self.store).sources()}
+        monitor_job=self.store.enqueue('monitor_update') if self.store.settings().get('monitor_enabled',True) else None
         self.store.progress(jid,'导入历史归档',2)
         self.store.import_archives()
-        sources=[self.store.source(s['id']) for s in self.store.sources() if s['enabled'] and s['kind']!='x']
+        sources=[self.store.source(s['id']) for s in self.store.sources() if s['enabled'] and s['kind']!='x' and s['id'] not in monitored]
         changed=set()
         results=[]
         active=[]
@@ -115,6 +118,9 @@ class Worker:
         if settings['ai_enabled']:
             quality = self.curate_events(jid, self.store.review_candidates(80),
                                         base=dict(sources=results,new_events=len(changed)), start=60, end=82)
+        # Independent monitoring may have ingested AI candidates during this update.
+        with self.store.connect() as db:
+            changed.update(r[0] for r in db.execute("SELECT id FROM events WHERE relevance_status='accepted' AND ai_status='pending' AND changed_at>=? ORDER BY updated_at DESC LIMIT 100", (self.store.internal('_monitor_started_at',now()),)))
         candidates=[]
         for eid in dict.fromkeys(self.store.resolve(e) for e in changed):
             event=self.store.event(eid)
@@ -129,7 +135,7 @@ class Worker:
                 else: ai_failed+=1
                 if self.stop.is_set(): break
         self.export_report()
-        result=dict(sources=results,new_events=len(changed),analyzed=analyzed,ai_failed=ai_failed,**quality,
+        result=dict(sources=results,monitor_job_id=monitor_job['id'] if monitor_job else None,new_events=len(changed),analyzed=analyzed,ai_failed=ai_failed,**quality,
                     successful_sources=sum(s['status']=='ok' for s in results),failed_sources=sum(s['status']=='error' for s in results))
         self.store.set_settings({'_last_update':now()})
         partial=any(s['status']!='ok' for s in results) or ai_failed>0 or quality.get('review_failed',0)>0 or quality.get('merge_failed',0)>0 or self.stop.is_set()

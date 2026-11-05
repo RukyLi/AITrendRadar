@@ -34,6 +34,13 @@ class Store:
         with self.connect() as db:
             db.execute("PRAGMA journal_mode=WAL")
             db.executescript(Path(__file__).with_name("schema.sql").read_text())
+            db.executescript(Path(__file__).with_name("monitor_schema.sql").read_text())
+            if 'error_code' not in {r[1] for r in db.execute('PRAGMA table_info(monitor_sources)')}:
+                db.execute("ALTER TABLE monitor_sources ADD COLUMN error_code TEXT NOT NULL DEFAULT ''")
+            if 'from_cache' not in {r[1] for r in db.execute('PRAGMA table_info(monitor_snapshots)')}:
+                db.execute('ALTER TABLE monitor_snapshots ADD COLUMN from_cache INTEGER NOT NULL DEFAULT 0')
+            if 'published_at' not in {r[1] for r in db.execute('PRAGMA table_info(monitor_items)')}:
+                db.execute('ALTER TABLE monitor_items ADD COLUMN published_at TEXT')
             if 'changed_at' not in {r[1] for r in db.execute('PRAGMA table_info(events)')}:
                 db.execute("ALTER TABLE events ADD COLUMN changed_at TEXT NOT NULL DEFAULT ''")
             columns = {r[1] for r in db.execute('PRAGMA table_info(events)')}
@@ -52,6 +59,8 @@ class Store:
             db.execute("BEGIN IMMEDIATE")
             if db.execute("SELECT 1 FROM settings WHERE key='_initialized'").fetchone():
                 self._migrate_quality(db)
+                from .monitor_catalog import seed
+                seed(db)
                 return
             config_file = self.root / "config/config.yaml"
             config = yaml.safe_load(config_file.read_text()) if config_file.exists() else {}
@@ -70,6 +79,8 @@ class Store:
             for key, value in {**SETTINGS, '_initialized': True}.items():
                 db.execute("INSERT OR IGNORE INTO settings VALUES(?,?)", (key, json.dumps(value)))
             self._migrate_quality(db)
+            from .monitor_catalog import seed
+            seed(db)
 
     def _migrate_quality(self, db):
         if not db.execute("SELECT 1 FROM settings WHERE key='_quality_v1'").fetchone():
@@ -205,7 +216,7 @@ class Store:
         sid = article['source_id']
         url = canonical_url(article.get('url'), sid)
         guid = str(article.get('guid') or '')[:1000]
-        aid = identity(sid, guid or url or title_key(title))
+        aid = article.get('_article_id') or identity(sid, guid or url or title_key(title))
         summary = plain(article.get('summary'))
         content_hash = identity(title, summary)
         observed = timestamp(article.get('observed_at'))
@@ -383,6 +394,9 @@ class Store:
             return dict(items=[{**dict(r), **identities[r['source_id']]} for r in rows], total=total,page=page,limit=limit,snapshot=now())
 
     def enqueue(self, kind='update', target=''):
+        # Dispatch monitoring immediately, even if the AI queue is occupied.
+        if kind == 'update' and self.settings().get('monitor_enabled', True):
+            self.enqueue('monitor_update')
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             row = db.execute("SELECT * FROM jobs WHERE kind=? AND target=? AND status IN ('queued','running')", (kind,target)).fetchone()
@@ -411,10 +425,10 @@ class Store:
             if result is not None: db.execute('UPDATE jobs SET result=? WHERE id=?', (json.dumps(result,ensure_ascii=False),jid))
             if status: db.execute('UPDATE jobs SET status=?,finished_at=? WHERE id=?', (status,now(),jid))
 
-    def claim(self):
+    def claim(self, monitor=False):
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
-            row = db.execute("SELECT * FROM jobs WHERE status='queued' ORDER BY created_at,rowid LIMIT 1").fetchone()
+            row = db.execute("SELECT * FROM jobs WHERE status='queued' AND (kind LIKE 'monitor_%')=? ORDER BY created_at,rowid LIMIT 1", (int(monitor),)).fetchone()
             if not row: return None
             db.execute("UPDATE jobs SET status='running',started_at=?,attempts=attempts+1 WHERE id=?", (now(),row['id']))
             return self._job(row)

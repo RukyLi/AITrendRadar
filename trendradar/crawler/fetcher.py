@@ -129,6 +129,8 @@ class DataFetcher:
                 data_json = json.loads(data_text)
 
                 status = data_json.get("status", "未知")
+                if data_json.get('fetchError'):
+                    raise ValueError('来源采集失败，服务仅保留旧缓存')
                 if status not in ["success", "cache"]:
                     raise ValueError(f"响应状态异常: {status}")
 
